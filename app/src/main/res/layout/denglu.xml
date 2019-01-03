@@ -35,7 +35,7 @@
         android:id="@+id/pwd"
         android:layout_width="177dp"
         android:layout_height="43dp"
-        android:text="请输入账号"
+        android:text="请输入密码"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="125dp"
         tools:layout_editor_absoluteY="134dp" />
