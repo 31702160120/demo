@@ -36,12 +36,12 @@ public class mine extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        user = ((Homepage)context).dateUser();
-        name = ((Homepage)context).dateName();
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        user = ((Homepage)context).dateUser();
+//        name = ((Homepage)context).dateName();
+//    }
 
     public void out(Button tui){
         tui.setOnClickListener(new View.OnClickListener() {
