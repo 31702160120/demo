@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.a2233.demo.Contact">
+    tools:context="com.example.a2233.demo.contactListFragment">
 
 </android.support.constraint.ConstraintLayout>
