@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Toast.makeText( MainActivity.this,"123",Toast.LENGTH_SHORT ).show();
+               Toast.makeText( MainActivity.this,"测试",Toast.LENGTH_SHORT ).show();
                 Intent intent = new Intent(MainActivity.this,register.class);
                 startActivity(intent);
             }

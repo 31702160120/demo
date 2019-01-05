@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.a2233.demo">
 
     <application
@@ -15,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:parentActivityName=".MainActivity"
+            android:name=".register"
+            android:label="欢迎您"
+            tools:ignore="DuplicateActivity" />
+        <activity android:name=".Homepage" android:label="聊天室" />
     </application>
 
 </manifest>

@@ -34,12 +34,12 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         bian();
 
-        zhuce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                httpZc();
-            }
-        });
+//        zhuce.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                httpZc();
+//            }
+//        });
     }
 
     public void bian(){
