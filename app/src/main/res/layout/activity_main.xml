@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hh"
     tools:context=".MainActivity">
     <ImageView
         android:id="@+id/iv_head"
@@ -11,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/head"/>
+        android:src="@drawable/cm2_1"/>
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"

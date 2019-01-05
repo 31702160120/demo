@@ -134,7 +134,7 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
         selfFragment = new mine();
         fragments = new ArrayList<>();
         //添加fragments到集合中
-//        fragments.add(weixinFragment);
+        fragments.add(weixinFragment);
 //        fragments.add(contactListFragment);
         fragments.add(selfFragment);
         fragmentManager = getSupportFragmentManager();

@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String json = response.body().string();
-                Log.d("post", "onResponse: json="+json);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -96,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("user",user);
                             intent.putExtra("md5user",denl.user);
                             startActivity(intent);
-
                         }
                         if(denl.status.equals("登陆失败")){
                             Toast.makeText(MainActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
