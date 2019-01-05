@@ -73,7 +73,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
         //为四大导航组件添加监听
         weixin.setOnClickListener(this);
         contact.setOnClickListener(this);
-//        find.setOnClickListener(this);
         self.setOnClickListener(this);
         //为viewpager添加页面变化的监听以及事件处理
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -135,7 +134,7 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
         fragments = new ArrayList<>();
         //添加fragments到集合中
         fragments.add(weixinFragment);
-//        fragments.add(contactListFragment);
+       fragments.add(contactListFragment);
         fragments.add(selfFragment);
         fragmentManager = getSupportFragmentManager();
         //为ViewPager设置适配器用于部署fragments
