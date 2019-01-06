@@ -56,10 +56,6 @@ public class register extends AppCompatActivity {
         Pattern p = Pattern.compile("[0-9]*");
         Matcher m = p.matcher(user);
         http zc = new http();
-        if(name.length()>8){
-            Toast.makeText(register.this,"用户名长度不能大于8",Toast.LENGTH_SHORT).show();
-            return;
-        }
         if(!m.matches()){
             Toast.makeText(register.this,"账户必须为数字",Toast.LENGTH_SHORT).show();
             return;
