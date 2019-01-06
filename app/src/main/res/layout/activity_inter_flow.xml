@@ -4,15 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d8e0e8" >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="欢迎进入聊天室"
-        android:background="#ff3e41"
-        android:textColor="#fff"
-        android:gravity="center"
-        android:textSize="18dp"
-        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/msg_recycler_view"
         android:layout_width="match_parent"

@@ -66,7 +66,6 @@ public class contactListFragment extends Fragment {
             }
         };
         Contact();
-
         return view;
     }
 
