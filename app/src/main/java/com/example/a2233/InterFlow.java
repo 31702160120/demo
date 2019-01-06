@@ -1,29 +1,32 @@
-package com.example.a2233.demo;
+package com.example.a2233;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a2233.demo.INfo.INterInFor;
+import com.example.a2233.demo.INfo.weiInfo;
+import com.example.a2233.demo.R;
+import com.example.a2233.demo.menu.LiaBuJu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,41 +44,37 @@ public class InterFlow extends Fragment {
     private String chat;
     private String name;
     private Handler handler;
-    private weiInfo weiInfo;
+    private com.example.a2233.demo.INfo.weiInfo weiInfo;
     private List<weiInfo> weiInfos;
     private LinearLayout loading;
     private ListView lvNews;
     private String jchat;
+    private RecyclerView msgRecyclerView;
+    private LiaBuJu adapter;
+    private List<INterInFor> msgList = new ArrayList<INterInFor>();
 
     @SuppressLint("HandlerLeak")
     @Nullable
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
         View view = inflater.inflate( R.layout.activity_inter_flow, container, false );
-        Button Send = view.findViewById( R.id.send );
-        ltext = (EditText) view.findViewById( R.id.text );
-        lvNews = (ListView) view.findViewById( R.id.list );
+         Send = view.findViewById( R.id.send );
+        ltext =  view.findViewById(R.id.input_text);
+        msgRecyclerView = view.findViewById(R.id.msg_recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        msgRecyclerView.setLayoutManager(layoutManager);
+        adapter = new LiaBuJu(msgList);
+        msgRecyclerView.setAdapter(adapter);
+        user = ((Homepage) getContext()).dated5User();
+        name = ((Homepage) getContext()).dateName();
         handler = new Handler() {
             @Override
             public void handleMessage( Message msg ) {
                 if (msg.what == 1) {
-                    String json = (String) msg.obj;
-                    weiInfos = Jsonwei.getweiInfo( json );
-                    if (weiInfos == null) {
-                        Toast.makeText( getActivity(), "解析失败", Toast.LENGTH_SHORT ).show();
-                    } else {
-                        json d = new json();
-                        lvNews.setAdapter( d );
-                        lvNews.post( new Runnable() {
-                            @Override
-                            public void run() {
-                                json json = new json();
-                                lvNews.setSelection( json.getCount() - 1 );
-                                ltext.setText( "" );
-//                                lvNews.smoothScrollToPosition(json.getCount());
-                            }
-                        } );
-                    }
+                    msgRecyclerView.setAdapter(adapter);
+                    msgRecyclerView.scrollToPosition(msgList.size() - 1);
+                }else if(msg.what == 0){
+                    Toast.makeText(getActivity(), "糟糕!网络好像出问题了", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -83,7 +82,13 @@ public class InterFlow extends Fragment {
             @SuppressLint("HandlerLeak")
             @Override
             public void onClick( View v ) {
+                jchat = ltext.getText().toString().trim();
+                if(jchat.equals("")){
+                    Toast.makeText(getActivity(),"发送的信息不能为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 news();
+                ltext.setText("");
 
             }
         } );
@@ -91,15 +96,12 @@ public class InterFlow extends Fragment {
         return view;
     }
 
-    public void onAttach( Context context ) {
-        super.onAttach( context );
-        user = ((Homepage) context).dated5User();
-    }
 
     public void news() {
         jchat = ltext.getText().toString().trim();
         this.chat = jchat;
         this.user = user;
+        msgList.clear();
         new Thread() {
             @Override
             public void run() {
@@ -115,11 +117,21 @@ public class InterFlow extends Fragment {
                     @Override
                     public void onResponse( Call call, Response response ) throws IOException {
                         final String json = response.body().string();
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<weiInfo>>() {}.getType();
+                        List<weiInfo> weiInfos = gson.fromJson( json, listType );
+                        Collections.reverse( weiInfos );
+                        for (weiInfo i : weiInfos ){
+                            String tmp_name = i.getName();
+                            if (!tmp_name.equals(name)){
+                                msgList.add(new INterInFor(tmp_name,i.getChat(),i.getTime(),INterInFor.TYPE_RECEIVED));
+                            } else {
+                                msgList.add(new INterInFor(tmp_name,i.getChat(),i.getTime(),INterInFor.TYPE_SENT));
+                            }
+                        }
                         Message mag = new Message();
                         mag.what = 1;
-                        mag.obj = json;
                         handler.sendMessage( mag );
-                        Log.v( "数据", json );
                     }
                 } );
             }
@@ -127,45 +139,4 @@ public class InterFlow extends Fragment {
 
     }
 
-    public static class Jsonwei {
-        public static List<weiInfo> getweiInfo( String json ) {
-            Gson gson = new Gson();
-            Type listType = new TypeToken<List<weiInfo>>() {
-            }.getType();
-            List<weiInfo> weiInfos = gson.fromJson( json, listType );
-            Collections.reverse( weiInfos );
-            return weiInfos;
-        }
-    }
-
-    public class json extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return weiInfos.size();
-        }
-
-        public View getView( int position, View convertView, ViewGroup parent ) {
-            View view = View.inflate( getActivity(), R.layout.layout2, null );
-            TextView x_name = view.findViewById( R.id.x_title );
-            TextView x_chat = view.findViewById( R.id.x_chat );
-            TextView x_time = view.findViewById( R.id.x_type );
-            weiInfo = weiInfos.get( position );
-            x_name.setText( weiInfo.getName() );
-            x_chat.setText( weiInfo.getChat() );
-            x_time.setText( weiInfo.gettime() );
-            return view;
-        }
-
-        @Override
-        public Object getItem( int position ) {
-            return null;
-        }
-
-        @Override
-        public long getItemId( int position ) {
-            return 0;
-        }
-
-    }
 }

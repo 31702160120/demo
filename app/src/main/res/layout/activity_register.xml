@@ -4,27 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/timg"
-    tools:context=".MainActivity">
+    android:background="@drawable/ti"
+    tools:context="com.example.a2233.MainActivity">
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_head"
-        android:layout_marginTop="80dp"
+        android:layout_above="@+id/btn_zc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="72dp"
         android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/regist_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="用户名："
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <EditText
                 android:id="@+id/zc_name"
                 android:layout_width="match_parent"
@@ -32,20 +38,23 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/tv_name"
                 android:hint="请输入用户名"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/regist_password1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/tv_psw1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="账    号："
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <EditText
                 android:id="@+id/zc_user"
                 android:layout_width="match_parent"
@@ -54,20 +63,23 @@
                 android:layout_toRightOf="@id/tv_psw1"
                 android:hint="请输入账号"
                 android:inputType="text"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/regist_password3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/tv_psw3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="密    码："
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <EditText
                 android:id="@+id/zc_password1"
                 android:layout_width="match_parent"
@@ -76,22 +88,21 @@
                 android:layout_toRightOf="@id/tv_psw3"
                 android:hint="请输入密码"
                 android:inputType="textPassword"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </RelativeLayout>
 
     </LinearLayout>
+
     <Button
         android:id="@+id/btn_zc"
         android:layout_width="200dp"
         android:layout_height="48dp"
-        android:layout_below="@id/layout"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20px"
+        android:layout_marginBottom="81dp"
         android:background="@drawable/start"
         android:text="注册"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 </RelativeLayout>

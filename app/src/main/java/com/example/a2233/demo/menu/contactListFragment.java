@@ -1,4 +1,4 @@
-package com.example.a2233.demo;
+package com.example.a2233.demo.menu;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a2233.demo.INfo.NewsInfo;
+import com.example.a2233.demo.R;
+import com.example.a2233.http;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,7 +46,7 @@ public class contactListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_contact_list_fragment,container,false);
+        View view = inflater.inflate( R.layout.activity_contact_list_fragment,container,false);
         loading = (LinearLayout) view.findViewById( R.id.loading );
         lvNews = (ListView) view.findViewById(R.id.lv_news);
         thread = new Handler(){

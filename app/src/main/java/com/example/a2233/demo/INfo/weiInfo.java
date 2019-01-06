@@ -1,4 +1,4 @@
-package com.example.a2233.demo;
+package com.example.a2233.demo.INfo;
 
 /**
  * Created by 2233 on 2019/1/4.
@@ -9,7 +9,7 @@ public class weiInfo {
     private  String time;
     private  String chat;
 
-   public  weiInfo(String name,String chat ,String time){
+    public  weiInfo( String name, String chat , String time){
        this.name=name;
        this.chat=chat;
        this.time=time;
@@ -23,11 +23,11 @@ public class weiInfo {
         this.chat = chat;
     }
 
-    public String gettime() {
+    public String getTime() {
         return time;
     }
 
-    public void setType( String time ) {
+    public void setTime( String time ) {
         this.time = time;
     }
 
@@ -38,4 +38,6 @@ public class weiInfo {
     public void setName( String name ) {
         this.name = name;
     }
+
+
 }

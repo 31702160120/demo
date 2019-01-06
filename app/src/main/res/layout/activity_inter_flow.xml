@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_above="@id/line1">
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="392dp">
-
-        </ListView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/line1"
+    android:layout_height="match_parent"
+    android:background="#d8e0e8" >
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:text="欢迎进入聊天室"
+        android:background="#ff3e41"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="18dp"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/msg_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
         <EditText
-            android:id="@+id/text"
+            android:id="@+id/input_text"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="match_parent"/>
+            android:hint="请输入信息"
+            android:maxLines="2" />
+
         <Button
             android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="发送"/>
+            android:text="发送" />
+
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.a2233.demo;
+package com.example.a2233;
 
         import android.os.Bundle;
         import android.support.v4.app.Fragment;
@@ -11,6 +11,11 @@ package com.example.a2233.demo;
         import android.widget.LinearLayout;
         import android.widget.TextView;
 
+        import com.example.a2233.demo.R;
+        import com.example.a2233.demo.menu.mine;
+        import com.example.a2233.InterFlow;
+        import com.example.a2233.demo.menu.contactListFragment;
+
         import java.util.ArrayList;
 
 public class Homepage extends AppCompatActivity implements View.OnClickListener {
@@ -18,7 +23,7 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
     private ArrayList<Fragment> fragments;
     //声明四个导航对应fragment
     InterFlow weixinFragment;
-    contactListFragment contactListFragment;
+    com.example.a2233.demo.menu.contactListFragment contactListFragment;
     //    findFragment findFragment;
     mine selfFragment;
     //声明ViewPager
@@ -33,7 +38,7 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
+        setContentView( R.layout.activity_homepage);
         //初始化加载首页布局
         initView();
         //调用自定义initListener方法，为各个组件添加监听事件

@@ -1,4 +1,4 @@
-package com.example.a2233.demo;
+package com.example.a2233.demo.INfo;
 
 /**
  * Created by 2233 on 2019/1/4.
