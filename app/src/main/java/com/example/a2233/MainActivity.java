@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Toast.makeText( MainActivity.this,"测试",Toast.LENGTH_SHORT ).show();
+               Toast.makeText( MainActivity.this,"欢迎注册",Toast.LENGTH_SHORT ).show();
                 Intent intent = new Intent(MainActivity.this,register.class);
                 startActivity(intent);
             }
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("user",user);
                             intent.putExtra("md5user",denl.user);
                             startActivity(intent);
+                            MainActivity.this.finish();
                         }
                         if(denl.status.equals("登陆失败")){
                             Toast.makeText(MainActivity.this,"登录失败",Toast.LENGTH_SHORT).show();

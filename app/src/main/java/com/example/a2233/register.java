@@ -13,6 +13,9 @@ import com.example.a2233.demo.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.text.BreakIterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,6 +26,7 @@ public class register extends AppCompatActivity {
     private  TextView zcname;
     private  TextView zcpassword;
     private Button zhuce;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,17 @@ public class register extends AppCompatActivity {
         String user = zcuser.getText().toString().trim();
         String name = zcname.getText().toString().trim();
         String password = zcpassword.getText().toString().trim();
+        Pattern p = Pattern.compile("[0-9]*");
+        Matcher m = p.matcher(user);
         http zc = new http();
+        if(name.length()>8){
+            Toast.makeText(register.this,"用户名长度不能大于8",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!m.matches()){
+            Toast.makeText(register.this,"账户必须为数字",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (name.equals("")){
             Toast.makeText(register.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
             return;
