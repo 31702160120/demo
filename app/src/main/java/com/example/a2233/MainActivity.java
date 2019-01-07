@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("user", user);
                         intent.putExtra("md5user",denl.user);
                         startActivity(intent);
+                        MainActivity.this.finish();
+
                     }
                     if(denl.status.equals("登陆失败")){
                         Toast.makeText(MainActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
