@@ -2,6 +2,8 @@ package com.example.a2233;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,13 +28,30 @@ public class register extends AppCompatActivity {
     private  TextView zcname;
     private  TextView zcpassword;
     private Button zhuce;
-
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.activity_register);
         bian();
-
+        handler =new Handler(){
+            @Override
+            public void handleMessage( Message msg ) {
+               if(msg.what==1){
+                   String status = (String) msg.obj;
+                   if(status.equals("注册成功")){
+                       Toast.makeText(register.this,"注册成功",Toast.LENGTH_SHORT).show();
+                       Intent intent = new Intent(register.this,MainActivity.class);
+                       startActivity(intent);
+                   }
+                   if(status.equals("用户名重复")){
+                       Toast.makeText(register.this,"账号已存在",Toast.LENGTH_SHORT).show();
+                   }
+               }else if(msg.what==0){
+                   Toast.makeText(register.this, "糟糕!网络好像出问题了", Toast.LENGTH_SHORT).show();
+               }
+            }
+        };
         zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,13 +68,13 @@ public class register extends AppCompatActivity {
 
     }
 
+
     public void httpZc(){
-        String user = zcuser.getText().toString().trim();
-        String name = zcname.getText().toString().trim();
-        String password = zcpassword.getText().toString().trim();
+        final String user = zcuser.getText().toString().trim();
+        final String name = zcname.getText().toString().trim();
+        final String password = zcpassword.getText().toString().trim();
         Pattern p = Pattern.compile("[0-9]*");
         Matcher m = p.matcher(user);
-        http zc = new http();
         if(!m.matches()){
             Toast.makeText(register.this,"账户必须为数字",Toast.LENGTH_SHORT).show();
             return;
@@ -72,34 +91,31 @@ public class register extends AppCompatActivity {
             Toast.makeText(register.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
-        zc.On_httpzhuce(user, name, password, new Callback() {
+        new Thread(){
             @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                final String zcJson = response.body().string();
-                runOnUiThread(new Runnable() {
+            public void run() {
+                http zc = new http();
+                zc.On_httpzhuce(user, name, password, new Callback() {
                     @Override
-                    public void run() {
+                    public void onFailure(Call call, IOException e) {
+                        Message mag = new Message();
+                        mag.what = 0;
+                        handler.sendMessage( mag );
+                    }
+
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        final String zcJson = response.body().string();
                         Gson gson = new Gson();
                         Jsonzc add = gson.fromJson(zcJson,Jsonzc.class);
-                        if(add.status.equals("注册成功")){
-                            Toast.makeText(register.this,"注册成功",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(register.this,MainActivity.class);
-                            startActivity(intent);
-                        }
-                        if(add.status.equals("用户名重复")){
-                            Toast.makeText(register.this,"账号已存在",Toast.LENGTH_SHORT).show();
-                        }
+                        Message mag = new Message();
+                        mag.obj=add.status;
+                        mag.what = 1;
+                        handler.sendMessage( mag );
                     }
                 });
             }
-        });
-
-
+        }.start();
     }
 
     public  class Jsonzc{
