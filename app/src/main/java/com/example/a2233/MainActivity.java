@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("md5user",denl.user);
                         startActivity(intent);
                         MainActivity.this.finish();
-
                     }
                     if(denl.status.equals("登陆失败")){
                         Toast.makeText(MainActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
@@ -105,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                         mag.what = 0;
                         handler.sendMessage( mag );
                     }
-
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         final String json = response.body().string();

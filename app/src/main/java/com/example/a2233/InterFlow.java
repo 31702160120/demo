@@ -89,10 +89,8 @@ public class InterFlow extends Fragment {
                 }
                 news();
                 ltext.setText("");
-
             }
         } );
-
         return view;
     }
 
@@ -113,7 +111,6 @@ public class InterFlow extends Fragment {
                         mag.what = 0;
                         handler.sendMessage( mag );
                     }
-
                     @Override
                     public void onResponse( Call call, Response response ) throws IOException {
                         final String json = response.body().string();

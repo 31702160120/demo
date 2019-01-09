@@ -55,7 +55,6 @@ public class contactListFragment extends Fragment {
                 if(msg.what==1){
                     String json = (String)msg.obj;
                     newsInfos = JsonParse.getNewsInfo(json);
-                    Log.i( "45", String.valueOf( newsInfos ) );
                     if(newsInfos==null){
                         Toast.makeText(getActivity(),"解析失败",Toast.LENGTH_SHORT).show();
                     }else {
@@ -81,7 +80,6 @@ public class contactListFragment extends Fragment {
                         mag.what = 0;
                         thread.sendMessage(mag);
                     }
-
                     @Override
                     public void onResponse(Call call, final Response response) throws IOException {
                         final  String json = response.body().string();
@@ -89,7 +87,6 @@ public class contactListFragment extends Fragment {
                         mag.what = 1;
                         mag.obj = json;
                         thread.sendMessage( mag );
-
                     }
                 });
             }

@@ -47,7 +47,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
         viewPager.setCurrentItem(0);
         weixin_img.setSelected(true);
         weixin_txt.setSelected(true);
-
         getInfo();
         getIn();
     }
@@ -83,7 +82,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -173,7 +171,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
                 contact_txt.setSelected(false);
                 self_img.setSelected(false);
                 self_txt.setSelected(false);
-
                 break;
             case R.id.contact:
                 viewPager.setCurrentItem(1);
@@ -183,7 +180,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
                 contact_txt.setSelected(true);
                 self_img.setSelected(false);
                 self_txt.setSelected(false);
-
                 break;
             case R.id.self:
                 viewPager.setCurrentItem(2);
@@ -193,7 +189,6 @@ public class Homepage extends AppCompatActivity implements View.OnClickListener 
                 contact_txt.setSelected(false);
                 self_img.setSelected(true);
                 self_txt.setSelected(true);
-
                 break;
         }
     }

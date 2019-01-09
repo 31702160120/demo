@@ -23,11 +23,9 @@ public class LiaBuJu extends RecyclerView.Adapter<LiaBuJu.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout leftLayout;
-
         RelativeLayout rightLayout;
         TextView time;
         TextView leftMsg,leftName;
-
         TextView rightMsg,rightName;
         public ViewHolder( View view ) {
             super( view );
@@ -63,7 +61,6 @@ public class LiaBuJu extends RecyclerView.Adapter<LiaBuJu.ViewHolder> {
             holder.leftLayout.setVisibility(View.GONE);
             holder.rightName.setText(iNterInFor.getName());
             holder.rightMsg.setText(iNterInFor.getChat());
-            Log.i( "14", iNterInFor.getChat());
         }
     }
 
